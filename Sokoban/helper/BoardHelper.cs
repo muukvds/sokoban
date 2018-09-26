@@ -21,7 +21,9 @@ namespace Sokoban.helper
         public Tile getBoard(int boardNumber)
         {
 
-            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @""+ _baseUrl + "doolhof"+ boardNumber + ".txt");
+            //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @""+ _baseUrl + "doolhof"+ boardNumber + ".txt");
+            //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"" + _baseUrl + "doolhof" + boardNumber + ".txt");
+            string path = AppDomain.CurrentDomain.BaseDirectory + _baseUrl + "doolhof" + boardNumber + ".txt";
             string[] aBoard = File.ReadAllLines(path);
 
             List<List<Char>> lBoard = new List<List<char>>();

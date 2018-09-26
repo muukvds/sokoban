@@ -20,6 +20,8 @@ namespace Sokoban.view
 
         public void PrintMenu()
         {
+            Console.Clear();
+
             Console.WriteLine("______________________________________________________");
             Console.WriteLine("| Welkom bij sokoban                                 |");
             Console.WriteLine("| betekenis van de symbolen   | doel van het spel    |");
@@ -34,7 +36,6 @@ namespace Sokoban.view
             Console.WriteLine("|____________________________________________________|");
             Console.WriteLine("");
             Console.WriteLine("> Kies een doolhof (1 - 4), s = stop");
-            Console.ReadLine();
 
             string sInput = Console.ReadLine();
 

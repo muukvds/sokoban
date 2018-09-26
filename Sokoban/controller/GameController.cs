@@ -33,8 +33,7 @@ namespace Sokoban.controller
 
         public void PlayGame(int boardNumber)
         {
-            BoardHelper boardHelper = new BoardHelper("board/");
-            _model.Play(new BoardHelper("board/").getBoard(boardNumber));
+            _model.Play(new BoardHelper("boards/").getBoard(boardNumber));
         }
 
         public void Quit()

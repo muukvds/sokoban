@@ -1,4 +1,6 @@
-﻿using Sokoban.model;
+﻿using Sokoban.controller;
+using Sokoban.enums;
+using Sokoban.model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,17 +14,16 @@ namespace Sokoban.helper
     class BoardHelper
     {
         private string _baseUrl;
+        private GameController _Controller;
 
-        public BoardHelper(string baseUrl)
+        public BoardHelper(string baseUrl, GameController controller)
         {
             _baseUrl = baseUrl;
+            _Controller = controller;
         }
 
         public Tile getBoard(int boardNumber)
         {
-
-            //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @""+ _baseUrl + "doolhof"+ boardNumber + ".txt");
-            //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"" + _baseUrl + "doolhof" + boardNumber + ".txt");
             string path = AppDomain.CurrentDomain.BaseDirectory + _baseUrl + "doolhof" + boardNumber + ".txt";
             string[] aBoard = File.ReadAllLines(path);
 
@@ -42,9 +43,69 @@ namespace Sokoban.helper
 
         private Tile generateTiles(List<List<Char>> lBoard)
         {
-            Tile t = new Tile();
+            Tile firstTile = null;
 
-            return t;
+            foreach (List<Char> tileRow in lBoard)
+            {
+                bool firstOfRow = true;
+                foreach (Char tile in tileRow)
+                {
+                    Tile newTile;
+
+                    switch (tile)
+                    {
+                        case '#':
+                            newTile = new Wall();
+                        break;
+
+                        case '@':
+                            Player player = new Player();
+                            newTile = new Floor(player);
+                            player.CurrentLocation = (Floor)newTile;
+                            controller.setPlayer(player);
+                            break;
+
+                        case '.':
+                            newTile = new Floor();
+                            break;
+
+                        case 'o':
+                            Chest chest = new Chest();
+                            newTile = new Floor(chest);
+                            chest.CurrentLocation = (Floor)newTile;
+                            break;
+
+                        case 'x':
+                            newTile = new Floor(true);
+                            break;
+
+                        default:
+                            newTile = new Floor();
+                            break;
+
+                    }
+
+                    if (firstTile != null)
+                    {
+                        if (firstOfRow)
+                        {
+                            firstTile.SetTile(newTile, Direction.DOWN);
+                            firstOfRow = false;
+                        }
+                        else
+                        {
+                            firstTile.SetTile(newTile, Direction.RIGHT);
+                        }
+                    }
+                    else {
+                        firstTile = newTile;
+                        firstOfRow = false;
+                    }
+                    
+                }
+            }
+  
+            return firstTile;
         }
 
     }

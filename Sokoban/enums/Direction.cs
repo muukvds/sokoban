@@ -1,15 +1,13 @@
-﻿using Sokoban.enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sokoban.model
+namespace Sokoban.enums
 {
-
-    class Player : GameObject
+    public enum Direction
     {
-
+        UP,DOWN,RIGHT,LEFT
     }
 }

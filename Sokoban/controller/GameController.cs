@@ -12,28 +12,38 @@ namespace Sokoban.controller
 
     class GameController
     {
-        private GameModel _model;
-        private GameView _view;
+        private GameModel _Model;
+        private GameView _View;
 
         public GameController()
         {
-            _model = new GameModel(this);
-            _view = new GameView(this);
+            _Model = new GameModel(this);
+            _View = new GameView(this);
         }
 
-  public void Start()
-    {
-            _model.Start();
-    }
+        public void Start()
+        {
+            _Model.Start();
+        }
 
         public void ShowStartMenu()
         {
-            _view.PrintMenu();
+            _View.PrintMenu();
+        }
+
+        public void ShowGame(Tile firstTile)
+        {
+            _View.PrintGame(firstTile);
         }
 
         public void PlayGame(int boardNumber)
         {
-            _model.Play(new BoardHelper("boards/").getBoard(boardNumber));
+            _Model.Play(new BoardHelper("boards/", this).getBoard(boardNumber));
+        }
+
+        public void SetPlayer(Player player)
+        {
+            _Model.Player = player;
         }
 
         public void Quit()
@@ -44,5 +54,5 @@ namespace Sokoban.controller
 
     }
 
-  
+
 }

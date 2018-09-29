@@ -11,6 +11,14 @@ namespace Sokoban.model
     {
         private GameController _controller;
 
+        private Tile _firstTile;
+
+        private int _Destinations;
+        private int _ChestOnDestinations;
+
+
+        public Player Player { get; set; }
+
         public GameModel(GameController controller)
         {
             _controller = controller;
@@ -21,10 +29,14 @@ namespace Sokoban.model
             _controller.ShowStartMenu();
         }
 
-        public void Play(Tile tile)
+        public void Play(Tile firstTile)
         {
+            _firstTile = firstTile;
+
             Console.WriteLine("game playing");
             Console.ReadLine();
         }
+
+
     }
 }

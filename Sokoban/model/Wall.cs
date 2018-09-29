@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace Sokoban.model
 {
-
-    class Player : GameObject
+    class Wall : Tile
     {
+        
+        public Wall()
+        {
+            this.CanBeMovedOn = false;
+        }
 
     }
 }

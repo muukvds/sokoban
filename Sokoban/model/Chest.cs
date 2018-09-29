@@ -1,5 +1,4 @@
-﻿using Sokoban.enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sokoban.model
 {
-
-    class Player : GameObject
+    class Chest : GameObject
     {
 
     }

@@ -67,9 +67,9 @@ namespace Sokoban.view
             }
         }
 
-        public void PrintGame(Player player)
+        public void PrintGame(Tile FirstTile)
         {
-
+ 
         }
 
     }

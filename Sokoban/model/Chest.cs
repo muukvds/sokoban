@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sokoban.enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,22 @@ namespace Sokoban.model
 {
     class Chest : GameObject
     {
+        public override bool Move(Direction direction)
+        {
+            bool moved = false;
 
+            if (CurrentLocation.NeighbourTile(direction).CanBeMovedOn)
+            {
+                if (CurrentLocation.NeighbourTile(direction) is Floor targetFloor)
+                {
+                    if (targetFloor.GameObject == null)
+                    {
+                        MoveTo(direction, targetFloor);
+                        moved = true;
+                    }
+                }
+            }
+            return moved;
+        }
     }
 }

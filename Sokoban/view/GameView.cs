@@ -69,7 +69,26 @@ namespace Sokoban.view
 
         public void PrintGame(Tile FirstTile)
         {
- 
+
+
+
+            WaitForInput();
+
+
+
+
+        }
+
+        private void WaitForInput()
+        {
+            do
+            {
+                while (!Console.KeyAvailable)
+                {
+                    Console.WriteLine("Key Press");
+
+                }
+            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
 
     }

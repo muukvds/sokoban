@@ -1,4 +1,5 @@
-﻿using Sokoban.helper;
+﻿using Sokoban.enums;
+using Sokoban.helper;
 using Sokoban.model;
 using Sokoban.view;
 using System;
@@ -44,6 +45,11 @@ namespace Sokoban.controller
         public void SetPlayer(Player player)
         {
             _Model.Player = player;
+        }
+
+        public void MovePlayer(Direction direction)
+        {
+            _Model.MovePlayer(direction);
         }
 
         public void Quit()

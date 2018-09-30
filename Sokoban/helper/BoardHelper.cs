@@ -62,7 +62,7 @@ namespace Sokoban.helper
                             Player player = new Player();
                             newTile = new Floor(player);
                             player.CurrentLocation = (Floor)newTile;
-                            controller.setPlayer(player);
+                            _Controller.SetPlayer(player);
                             break;
 
                         case '.':

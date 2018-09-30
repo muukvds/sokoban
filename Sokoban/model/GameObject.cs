@@ -7,27 +7,19 @@ using System.Threading.Tasks;
 
 namespace Sokoban.model
 {
-    class GameObject
+    abstract class GameObject
     {
 
         public Floor CurrentLocation { get; set; }
 
 
-        public bool Move(Direction direction)
+        public abstract bool Move(Direction direction);
+
+        protected void MoveTo(Direction direction, Floor targetFloor)
         {
-            bool moved = false;
-
-            if (CurrentLocation.CanBeMovedOn)
-            {
-                MoveTo(direction);
-            }
-
-            return moved;
-        }
-
-        private void MoveTo(Direction direction)
-        {
-
+            targetFloor.GameObject = this;
+            CurrentLocation.GameObject = null;
+            CurrentLocation = targetFloor;
         }
     }
 }

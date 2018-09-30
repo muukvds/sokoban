@@ -14,9 +14,29 @@ namespace Sokoban.model
         private Tile _leftTile = null;
         private Tile _bottomTile = null;
 
-        private bool _canBeMovedOn;
+        public bool CanBeMovedOn { get; set; }
 
-        public bool CanBeMovedOn { get { return _canBeMovedOn; } set { _canBeMovedOn = value; } }
+
+        public Tile NeighbourTile(Direction direction)
+        {
+            Tile NeighbourTile = null;
+            switch (direction)
+            {
+                case Direction.UP:
+                    NeighbourTile = _topTile;
+                    break;
+                case Direction.DOWN:
+                    NeighbourTile = _bottomTile;
+                    break;
+                case Direction.LEFT:
+                    NeighbourTile = _leftTile;
+                    break;
+                case Direction.RIGHT:
+                    NeighbourTile = _rightTile;
+                    break;
+            }
+            return NeighbourTile;
+        }
 
         public void SetTile(Tile newTile,Direction direction)
         {
@@ -66,38 +86,6 @@ namespace Sokoban.model
 
             return this;
         }
-        public bool Move(Direction direction)
-        {
-            bool moved = false;
-            switch (direction)
-            {
-                case Direction.UP:
-                    if (_topTile.CanBeMovedOn)
-                    {
-
-                    }
-                    break;
-                case Direction.DOWN:
-                    if (_bottomTile.CanBeMovedOn)
-                    {
-
-                    }
-                    break;
-                case Direction.LEFT:
-                    if (_leftTile.CanBeMovedOn)
-                    {
-
-                    }
-                    break;
-                case Direction.RIGHT:
-                    if (_rightTile.CanBeMovedOn)
-                    {
-
-                    }
-                    break;
-
-            }
-            return moved;
-        }
+ 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Sokoban.controller;
+using Sokoban.enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,11 @@ namespace Sokoban.model
         public void Start()
         {
             _controller.ShowStartMenu();
+        }
+
+        public void MovePlayer(Direction direction)
+        {
+            Player.Move(direction);
         }
 
         public void Play(Tile firstTile)

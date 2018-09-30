@@ -33,16 +33,19 @@ namespace Sokoban.model
         public void MovePlayer(Direction direction)
         {
             Player.Move(direction);
+            Update();
         }
 
         public void Play(Tile firstTile)
         {
             _firstTile = firstTile;
-
-            Console.WriteLine("game playing");
-            Console.ReadLine();
+            _controller.ShowGame(_firstTile);
         }
 
+        private void Update()
+        {
+            _controller.ShowGame(_firstTile);
+        }
 
     }
 }

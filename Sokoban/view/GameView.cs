@@ -1,4 +1,5 @@
 ﻿using Sokoban.controller;
+using Sokoban.enums;
 using Sokoban.model;
 using System;
 using System.Collections.Generic;
@@ -70,25 +71,48 @@ namespace Sokoban.view
         public void PrintGame(Tile FirstTile)
         {
 
-
-
-            WaitForInput();
-
+            Console.WriteLine("Board");
 
 
 
+
+
+
+
+            _controller.MovePlayer(WaitForInput());
         }
 
-        private void WaitForInput()
+        private Direction WaitForInput()
         {
-            do
+            Direction direction = Direction.UP;
+            bool arroKeyPressed = false;
+            while (!arroKeyPressed)
             {
-                while (!Console.KeyAvailable)
+                if (Console.KeyAvailable)
                 {
-                    Console.WriteLine("Key Press");
-
+                    ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                    switch (keyInfo.Key)
+                    {
+                        case ConsoleKey.UpArrow:
+                            direction = Direction.UP;
+                            arroKeyPressed = true;
+                            break;
+                        case ConsoleKey.DownArrow:
+                            direction = Direction.DOWN;
+                            arroKeyPressed = true;
+                            break;
+                        case ConsoleKey.LeftArrow:
+                            direction = Direction.LEFT;
+                            arroKeyPressed = true;
+                            break;
+                        case ConsoleKey.RightArrow:
+                            direction = Direction.RIGHT;
+                            arroKeyPressed = true;
+                            break;
+                    }
                 }
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+            }
+            return direction;
         }
 
     }

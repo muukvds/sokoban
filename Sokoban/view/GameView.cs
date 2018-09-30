@@ -32,7 +32,7 @@ namespace Sokoban.view
             Console.WriteLine("|     . : vloer               | de krat(ten)         |");
             Console.WriteLine("|     O : krat                | de krat(ten)         |");
             Console.WriteLine("|     0 : krat op bestemming  | de krat(ten)         |");
-            Console.WriteLine("|     x : bestemming          | de krat(ten)         |");
+            Console.WriteLine("|     X : bestemming          | de krat(ten)         |");
             Console.WriteLine("|     @ : truck               | de krat(ten)         |");
             Console.WriteLine("|____________________________________________________|");
             Console.WriteLine("");
@@ -71,15 +71,99 @@ namespace Sokoban.view
         public void PrintGame(Tile FirstTile)
         {
 
-            Console.WriteLine("Board");
+                Console.Clear();
+            Tile CurrentTile = FirstTile;
+            Tile FirstLineTile = FirstTile;
 
+            while (CurrentTile != null)
+            {
+                if (CurrentTile.NeighbourTile(Direction.RIGHT) != null)
+                {
+                    Console.Write(GetIcon(CurrentTile));
+                    CurrentTile = CurrentTile.NeighbourTile(Direction.RIGHT);
+                }
+                else
+                {
+                    FirstLineTile = FirstLineTile.NeighbourTile(Direction.DOWN);
+                    Console.WriteLine(GetIcon(CurrentTile));
 
-
-
-
-
-
+                    if (FirstLineTile == null) { break; }
+                    CurrentTile = FirstLineTile;
+                }
+            }
             _controller.MovePlayer(WaitForInput());
+        }
+
+        private string GetIcon(Tile tile)
+        { 
+            string Icon="";
+     
+            switch (tile.GetType().Name)
+            {
+                case "Wall":
+                    Icon = "█";
+                    break;
+
+                case "Floor":
+                    Floor floor = (Floor)tile;
+                    if (floor.GameObject == null)
+                    {
+                        Icon = ".";
+                    }
+                    else
+                    {
+                        switch (floor.GameObject.GetType().Name)
+                        {
+                            case "Player":
+                                Icon = "@";
+                                break;
+
+                            case "Worker":
+                                if (((Worker)floor.GameObject).Sleeping)
+                                {
+                                    Icon = "Z";
+                                }
+                                else
+                                {
+                                    Icon = "$";
+                                }
+                                break;
+
+                            case "Chest":
+                                Icon = "O";
+                                break;
+                        }
+                    }
+                    break;
+
+                case "Destination":
+                    if (((Destination)tile).GameObject == null)
+                    {
+                        Icon = "X";
+                    }
+                    else if (((Destination)tile).GameObject.GetType().Name == "Chest")
+                    {
+                        Icon = "0";
+                    }
+                    else if (((Destination)tile).GameObject.GetType().Name == "Player")
+                    {
+                        Icon = "@";
+                    }
+                    break;
+
+                case "Empty":
+                    Icon = " ";
+                    break;
+
+                case "Pit":
+                    if (((Pit)tile).Broken)
+                    {
+                        Icon = " ";
+                    }
+                    else { Icon = "~"; }
+                    break;
+            }
+            return Icon;
         }
 
         private Direction WaitForInput()

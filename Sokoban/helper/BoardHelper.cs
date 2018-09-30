@@ -76,7 +76,7 @@ namespace Sokoban.helper
                             break;
 
                         case 'x':
-                            newTile = new Floor(true);
+                            newTile = new Destination();
                             break;
 
                         case ' ':

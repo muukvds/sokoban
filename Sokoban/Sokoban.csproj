@@ -47,6 +47,7 @@
     <Compile Include="enums\Direction.cs" />
     <Compile Include="helper\BoardHelper.cs" />
     <Compile Include="model\Chest.cs" />
+    <Compile Include="model\Destination.cs" />
     <Compile Include="model\Empty.cs" />
     <Compile Include="model\GameObject.cs" />
     <Compile Include="model\Floor.cs" />

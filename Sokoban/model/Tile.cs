@@ -16,7 +16,6 @@ namespace Sokoban.model
 
         public bool CanBeMovedOn { get; set; }
 
-
         public Tile NeighbourTile(Direction direction)
         {
             Tile NeighbourTile = null;

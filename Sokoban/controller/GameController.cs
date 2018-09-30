@@ -47,6 +47,11 @@ namespace Sokoban.controller
             _Model.Player = player;
         }
 
+        public void AddWorker(Worker worker)
+        {
+            _Model.AddWorker(worker);
+        }
+
         public void MovePlayer(Direction direction)
         {
             _Model.MovePlayer(direction);

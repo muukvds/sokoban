@@ -79,6 +79,18 @@ namespace Sokoban.helper
                             newTile = new Floor(true);
                             break;
 
+                        case ' ':
+                            newTile = new Empty();
+                            break;
+                        case '$':
+                            Worker worker = new Worker();
+                            newTile = new Floor(worker);
+                            worker.CurrentLocation = (Floor)newTile;
+                            _Controller.AddWorker(worker);
+                            break;
+                        case '~':
+                            newTile = new Pit();
+                            break;
                         default:
                             newTile = new Floor();
                             break;

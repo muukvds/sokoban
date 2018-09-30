@@ -47,12 +47,15 @@
     <Compile Include="enums\Direction.cs" />
     <Compile Include="helper\BoardHelper.cs" />
     <Compile Include="model\Chest.cs" />
+    <Compile Include="model\Empty.cs" />
     <Compile Include="model\GameObject.cs" />
     <Compile Include="model\Floor.cs" />
     <Compile Include="model\GameModel.cs" />
+    <Compile Include="model\Pit.cs" />
     <Compile Include="model\Player.cs" />
     <Compile Include="model\Tile.cs" />
     <Compile Include="model\Wall.cs" />
+    <Compile Include="model\Worker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="view\GameView.cs" />

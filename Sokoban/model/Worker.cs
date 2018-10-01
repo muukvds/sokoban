@@ -12,6 +12,11 @@ namespace Sokoban.model
 
         public bool Sleeping { get; set; }
 
+        public Worker()
+        {
+            Moveble = false;
+        }
+
         public override bool Move(Direction direction)
         {
             bool moved = false;
@@ -28,8 +33,11 @@ namespace Sokoban.model
                         }
                         else if (targetFloor.GameObject.Move(direction))
                         {
-                            MoveTo(direction, targetFloor);
-                            moved = true;
+                            if (targetFloor.GameObject.Moveble)
+                            {
+                                MoveTo(direction, targetFloor);
+                                moved = true;
+                            }
                         }
                     }
                 }

@@ -37,7 +37,7 @@ namespace Sokoban.controller
             _View.PrintGame(firstTile);
         }
 
-        public void PlayGame(int boardNumber)
+        public void PlayGame(string boardNumber)
         {
             _Model.Play(new BoardHelper("boards/", this).getBoard(boardNumber));
         }
@@ -59,9 +59,8 @@ namespace Sokoban.controller
 
         public void Quit()
         {
-
+            Environment.Exit(0);
         }
-
 
     }
 

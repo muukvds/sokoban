@@ -22,21 +22,27 @@ namespace Sokoban.helper
             _Controller = controller;
         }
 
-        public Tile getBoard(int boardNumber)
+        public Tile getBoard(string boardNumber)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + _baseUrl + "doolhof" + boardNumber + ".txt";
-            string[] aBoard = File.ReadAllLines(path);
-
             List<List<Char>> lBoard = new List<List<char>>();
-
-            foreach (String s in aBoard)
+            try
             {
-                List<Char> tileRowList = new List<char>();
-                foreach (Char tile in s.ToCharArray())
+                string path = AppDomain.CurrentDomain.BaseDirectory + _baseUrl + "doolhof" + boardNumber + ".txt";
+                string[] aBoard = File.ReadAllLines(path);
+
+                foreach (String s in aBoard)
                 {
-                    tileRowList.Add(tile);
+                    List<Char> tileRowList = new List<char>();
+                    foreach (Char tile in s.ToCharArray())
+                    {
+                        tileRowList.Add(tile);
+                    }
+                    lBoard.Add(tileRowList);
                 }
-                lBoard.Add(tileRowList);
+            }
+            catch(Exception)
+            {
+                _Controller.ShowStartMenu();
             }
             return generateTiles(lBoard);
         }

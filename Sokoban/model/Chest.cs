@@ -15,12 +15,15 @@ namespace Sokoban.model
 
             if (CurrentLocation.NeighbourTile(direction).CanBeMovedOn)
             {
-                if (CurrentLocation.NeighbourTile(direction) is Floor targetFloor)
+                if (this.Moveble)
                 {
-                    if (targetFloor.GameObject == null)
+                    if (CurrentLocation.NeighbourTile(direction) is Floor targetFloor)
                     {
-                        MoveTo(direction, targetFloor);
-                        moved = true;
+                        if (targetFloor.GameObject == null)
+                        {
+                            MoveTo(direction, targetFloor);
+                            moved = true;
+                        }
                     }
                 }
             }

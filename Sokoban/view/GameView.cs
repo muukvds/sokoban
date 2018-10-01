@@ -46,32 +46,14 @@ namespace Sokoban.view
             }
             else
             {
-                switch (sInput)
-                    {
-                    case "1":
-                        _controller.PlayGame(int.Parse(sInput));
-                        break;
-                    case "2":
-                        _controller.PlayGame(int.Parse(sInput));
-                        break;
-                    case "3":
-                        _controller.PlayGame(int.Parse(sInput));
-                        break;
-                    case "4":
-                        _controller.PlayGame(int.Parse(sInput));
-                        break;
-                    default:
-                        Console.WriteLine("Geen geldige invoer");
-                        PrintMenu();
-                        break;
-                }
+                _controller.PlayGame(sInput);
+               
             }
         }
 
         public void PrintGame(Tile FirstTile)
         {
-
-                Console.Clear();
+            Console.Clear();
             Tile CurrentTile = FirstTile;
             Tile FirstLineTile = FirstTile;
 
@@ -192,6 +174,9 @@ namespace Sokoban.view
                         case ConsoleKey.RightArrow:
                             direction = Direction.RIGHT;
                             arroKeyPressed = true;
+                            break;
+                        case ConsoleKey.Escape:
+                            _controller.Quit();
                             break;
                     }
                 }

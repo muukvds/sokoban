@@ -11,7 +11,12 @@ namespace Sokoban.model
     {
 
         public Floor CurrentLocation { get; set; }
+        public bool Moveble { get; protected set; }
 
+        public GameObject()
+        {
+            Moveble = true;
+        }
 
         public abstract bool Move(Direction direction);
 

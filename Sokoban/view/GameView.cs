@@ -36,7 +36,7 @@ namespace Sokoban.view
             Console.WriteLine("|     @ : truck               | de krat(ten)         |");
             Console.WriteLine("|____________________________________________________|");
             Console.WriteLine("");
-            Console.WriteLine("> Kies een doolhof (1 - 4), s = stop");
+            Console.WriteLine("> Kies een doolhof (1 - 6), s = stop");
 
             string sInput = Console.ReadLine();
 
@@ -79,7 +79,7 @@ namespace Sokoban.view
         private string GetIcon(Tile tile)
         { 
             string Icon="";
-     
+
             switch (tile.GetType().Name)
             {
                 case "Wall":
@@ -88,6 +88,7 @@ namespace Sokoban.view
 
                 case "Floor":
                     Floor floor = (Floor)tile;
+
                     if (floor.GameObject == null)
                     {
                         Icon = ".";
@@ -119,17 +120,36 @@ namespace Sokoban.view
                     break;
 
                 case "Destination":
-                    if (((Destination)tile).GameObject == null)
+                    if (tile is Destination destination)
                     {
-                        Icon = "X";
-                    }
-                    else if (((Destination)tile).GameObject.GetType().Name == "Chest")
-                    {
-                        Icon = "0";
-                    }
-                    else if (((Destination)tile).GameObject.GetType().Name == "Player")
-                    {
-                        Icon = "@";
+                        if (destination.GameObject == null)
+                        {
+                            Icon = "X";
+                        }
+                        else
+                        {
+                            switch (destination.GameObject.GetType().Name)
+                            {
+                                case "Player":
+                                    Icon = "@";
+                                    break;
+
+                                case "Worker":
+                                    if (((Worker)destination.GameObject).Sleeping)
+                                    {
+                                        Icon = "Z";
+                                    }
+                                    else
+                                    {
+                                        Icon = "$";
+                                    }
+                                    break;
+
+                                case "Chest":
+                                    Icon = "0";
+                                    break;
+                            }
+                        }
                     }
                     break;
 
@@ -138,11 +158,44 @@ namespace Sokoban.view
                     break;
 
                 case "Pit":
-                    if (((Pit)tile).Broken)
-                    {
-                        Icon = " ";
+                    if (tile is Pit pit) {
+
+                        if (pit.GameObject == null)
+                        {
+                            if (pit.Broken)
+                            {
+                                Icon = " ";
+                            }
+                            else
+                            {
+                                Icon = "~";
+                            }
+                        }
+                        else
+                        {
+                            switch (pit.GameObject.GetType().Name)
+                            {
+                                case "Player":
+                                    Icon = "@";
+                                    break;
+
+                                case "Worker":
+                                    if (((Worker)pit.GameObject).Sleeping)
+                                    {
+                                        Icon = "Z";
+                                    }
+                                    else
+                                    {
+                                        Icon = "$";
+                                    }
+                                    break;
+
+                                case "Chest":
+                                    Icon = "O";
+                                    break;
+                            }
+                        }
                     }
-                    else { Icon = "~"; }
                     break;
             }
             return Icon;

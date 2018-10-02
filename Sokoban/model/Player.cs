@@ -23,22 +23,25 @@ namespace Sokoban.model
             bool moved = false;
 
             if (CurrentLocation.NeighbourTile(direction).CanBeMovedOn)
-            {   if (this.Moveble)
+            {
+                if (CurrentLocation.NeighbourTile(direction) is Floor targetFloor)
                 {
-                    if (CurrentLocation.NeighbourTile(direction) is Floor targetFloor)
+                    if (targetFloor.GameObject == null)
                     {
-                        if (targetFloor.GameObject == null)
+                        MoveTo(direction, targetFloor);
+                        moved = true;
+                    }
+                    else if (targetFloor.GameObject.Moveble)
+                    {
+                        if (targetFloor.GameObject.Move(direction))
                         {
-                            MoveTo(direction, targetFloor);
-                            moved = true;
+                                MoveTo(direction, targetFloor);
+                                moved = true;
                         }
-                        else if (targetFloor.GameObject.Move(direction))
-                        {
-
-                            MoveTo(direction, targetFloor);
-                            moved = true;
-
-                        }
+                    }
+                    else if(targetFloor.GameObject is Worker worker)
+                    {
+                            worker.Sleeping = false;
                     }
                 }
             }

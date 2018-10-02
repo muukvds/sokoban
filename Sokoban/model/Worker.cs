@@ -31,9 +31,9 @@ namespace Sokoban.model
                             MoveTo(direction, targetFloor);
                             moved = true;
                         }
-                        else if (targetFloor.GameObject.Move(direction))
+                        else if (targetFloor.GameObject.Moveble)
                         {
-                            if (targetFloor.GameObject.Moveble)
+                            if (targetFloor.GameObject.Move(direction))
                             {
                                 MoveTo(direction, targetFloor);
                                 moved = true;
@@ -53,14 +53,24 @@ namespace Sokoban.model
 
         private void Wake()
         {
+            Random rnd = new Random();
+            int i = rnd.Next(0, 100);
 
-            Sleeping = false;
+            if (i < 15)
+            {
+                Sleeping = false;
+            }
         }
 
         private void Sleep()
         {
+            Random rnd = new Random();
+            int i = rnd.Next(0, 100);
 
-            Sleeping = true;
+            if (i < 15)
+            {
+                Sleeping = true;
+            }
         }
 
     }

@@ -10,19 +10,16 @@ namespace Sokoban.model
     class Floor : Tile
     {
         private GameObject _gameObject;
-        public GameObject GameObject { get { return _gameObject; } set { _gameObject = value; } }
+        public virtual GameObject GameObject { get { return _gameObject; } set{ _gameObject = value; } }
 
-        public bool Destination { get; set; }
-
-        public Floor(bool destination = false)
+        public Floor()
         {
-            this.Destination = destination;
             this.CanBeMovedOn = true;
         }
 
         public Floor(GameObject gameObject)
         {
-            _gameObject = gameObject;
+            GameObject = gameObject;
             this.CanBeMovedOn = true;
         }
 

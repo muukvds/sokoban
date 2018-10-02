@@ -9,25 +9,40 @@ namespace Sokoban.model
     class Pit : Floor
     {
         private int _Durebillety;
-        private bool _Broken;
+        public bool Broken { get; private set; }
+
+        public override GameObject GameObject { get { return base.GameObject; }
+            set
+            {
+                if (value != null)
+                {
+                    if (Broken && value is Chest)
+                    {
+                        base.GameObject = null;
+                    }
+                    else
+                    {
+                        base.GameObject = value;
+                    }
+                    if (_Durebillety <= 0)
+                    {
+                        Broken = true;
+                    }
+                    _Durebillety--;
+                }
+                else
+                {
+                    base.GameObject = value;
+                }
+            }
+        }
 
         public Pit()
         {
             _Durebillety = 3;
-            _Broken = false;
+            Broken = false;
         }
 
-        public void MovedOn()
-        {
-            _Durebillety--;
-
-            if (_Durebillety <= 0)
-            {
-                _Broken = true;
-            }
-        }
-
-        public bool Broken { get { return _Broken; } }
 
     }
 }

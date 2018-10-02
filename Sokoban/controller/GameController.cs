@@ -61,8 +61,5 @@ namespace Sokoban.controller
         {
             Environment.Exit(0);
         }
-
     }
-
-
 }

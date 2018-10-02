@@ -119,7 +119,6 @@ namespace Sokoban.helper
                         firstTile = newTile;
                         firstOfRow = false;
                     }
-                    
                 }
             }
   

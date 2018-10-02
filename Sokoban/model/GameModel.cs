@@ -59,7 +59,11 @@ namespace Sokoban.model
 
         private Direction RandomDirection()
         {
-            return Direction.UP;
+            Array values = Enum.GetValues(typeof(Direction));
+            Random random = new Random();
+            Direction randomDirection = (Direction)values.GetValue(random.Next(values.Length));
+
+            return randomDirection;
         }
     }
 }

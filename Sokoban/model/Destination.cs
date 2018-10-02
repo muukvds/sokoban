@@ -8,5 +8,6 @@ namespace Sokoban.model
 {
     class Destination : Floor
     {
+              public override GameObject GameObject { get { return base.GameObject; } set{ base.GameObject = value; } }
     }
 }

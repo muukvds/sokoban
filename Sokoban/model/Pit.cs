@@ -19,6 +19,7 @@ namespace Sokoban.model
                     if (Broken && value is Chest)
                     {
                         base.GameObject = null;
+                        base._gameModel.RemoveChest();
                     }
                     else
                     {
@@ -37,10 +38,11 @@ namespace Sokoban.model
             }
         }
 
-        public Pit()
+        public Pit(GameModel gameModel)
         {
             _Durebillety = 3;
             Broken = false;
+            base._gameModel = gameModel;
         }
 
 

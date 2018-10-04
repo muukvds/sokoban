@@ -21,6 +21,7 @@ namespace Sokoban.model
         public override bool Move(Direction direction)
         {
             bool moved = false;
+            Steps++;
 
             if (CurrentLocation.NeighbourTile(direction).CanBeMovedOn)
             {
@@ -45,8 +46,6 @@ namespace Sokoban.model
                     }
                 }
             }
-
-            Steps++;
             return moved;
         }
     }

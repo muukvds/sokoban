@@ -14,12 +14,16 @@ namespace Sokoban.helper
     class BoardHelper
     {
         private string _baseUrl;
+        private GameModel _Model;
         private GameController _Controller;
 
-        public BoardHelper(string baseUrl, GameController controller)
+        public BoardHelper(string baseUrl, GameModel gameModel, GameController gameController)
         {
             _baseUrl = baseUrl;
-            _Controller = controller;
+            _Model = gameModel;
+            _Controller = gameController;
+
+
         }
 
         public Tile getBoard(string boardNumber)
@@ -66,23 +70,23 @@ namespace Sokoban.helper
 
                         case '@':
                             Player player = new Player();
-                            newTile = new Floor(player);
+                            newTile = new Floor(_Model,player);
                             player.CurrentLocation = (Floor)newTile;
                             _Controller.SetPlayer(player);
                             break;
 
                         case '.':
-                            newTile = new Floor();
+                            newTile = new Floor(_Model);
                             break;
 
                         case 'o':
                             Chest chest = new Chest();
-                            newTile = new Floor(chest);
+                            newTile = new Floor(_Model,chest);
                             chest.CurrentLocation = (Floor)newTile;
                             break;
 
                         case 'x':
-                            newTile = new Destination();
+                            newTile = new Destination(_Model);
                             break;
 
                         case ' ':
@@ -90,15 +94,15 @@ namespace Sokoban.helper
                             break;
                         case '$':
                             Worker worker = new Worker();
-                            newTile = new Floor(worker);
+                            newTile = new Floor(_Model,worker);
                             worker.CurrentLocation = (Floor)newTile;
                             _Controller.AddWorker(worker);
                             break;
                         case '~':
-                            newTile = new Pit();
+                            newTile = new Pit(_Model);
                             break;
                         default:
-                            newTile = new Floor();
+                            newTile = new Empty();
                             break;
 
                     }

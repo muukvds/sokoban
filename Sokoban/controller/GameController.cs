@@ -39,7 +39,7 @@ namespace Sokoban.controller
 
         public void PlayGame(string boardNumber)
         {
-            _Model.Play(new BoardHelper("boards/", this).getBoard(boardNumber));
+            _Model.Play(new BoardHelper("boards/", _Model, this).getBoard(boardNumber));
         }
 
         public void SetPlayer(Player player)
@@ -55,6 +55,16 @@ namespace Sokoban.controller
         public void MovePlayer(Direction direction)
         {
             _Model.MovePlayer(direction);
+        }
+
+        public void EindGame(int steps)
+        {
+            _View.EindGame(steps);
+        }
+
+        public void LostGame()
+        {
+            _View.LostGame();
         }
 
         public void Quit()

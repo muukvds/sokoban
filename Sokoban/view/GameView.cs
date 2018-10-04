@@ -76,6 +76,20 @@ namespace Sokoban.view
             _controller.MovePlayer(WaitForInput());
         }
 
+        public void LostGame()
+        {
+            Console.WriteLine("Game verloren niet genoeg kratten.");
+            Console.ReadLine();
+            _controller.Quit();
+        }
+
+        public void EindGame(int steps)
+        {
+            Console.WriteLine("Game voltooid in "+ steps + " stappen");
+            Console.ReadLine();
+            _controller.Quit();
+        }
+
         private string GetIcon(Tile tile)
         { 
             string Icon="";
